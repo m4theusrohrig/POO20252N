@@ -7,12 +7,13 @@ const p: Personagem = new Personagem("Edécio");
 p.classe = "Monge";
 p.raca = "Morto-vivo";
 p.nivel = Math.floor(1+ Math.random() * 99);
-p.arma = "Cajado";
+p.arma = "Sem Arma";
 p.manaMaxima = 100;
 p.manaAtual = p.manaMaxima;
 p.vidaMaxima = 100;
 p.vidaAtual = p.vidaMaxima;
 p.poderAtaque = 1;
+
 
 while (true) {
 
@@ -20,6 +21,9 @@ console.log("+-----------MENU----------------+");
 console.log("|1. Treinar Poder de Ataque     |");
 console.log("|2. Ver status                  |");
 console.log("|3. Checar se personagem vive   |");
+console.log("|4. Subir Nível                 |");
+console.log("|5. Regenerar Mana              |");
+console.log("|6. Equipar Arma                |");
 console.log("|9. Sair                        |");
 console.log("+-------------------------------+");
 
@@ -38,7 +42,20 @@ switch (escolha) {
 
     case 3:
         console.log(p.estaVivo()? "Personagem está vivo!": "Personagem está morto!");
+        break;
 
+    case 4:
+        p.subirNivel();
+        break;
+
+    case 5:
+        p.regenerarMana();
+        break;
+
+    case 6:
+        const nomeArma = teclado("Digite a arma que deseja equipar: ");
+        p.equiparArma(nomeArma);
+        break;
     default:
         console.log("Opção inválida.");
         break;
