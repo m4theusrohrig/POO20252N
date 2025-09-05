@@ -1,4 +1,6 @@
+import { ar } from "@faker-js/faker";
 import { Util } from "./Util";
+
 
 export class Personagem{
     nome: string;
@@ -26,10 +28,32 @@ export class Personagem{
     }
 
 
+    equiparArma(nomeArma: string): void {
+        this.arma = nomeArma;
+        console.log(`${this.nome} equipou a arma: ${this.arma}`)
+    }
+
     treinarPoderAtaque(): void {
         const incrementoDoTreino: number = Util.gerarNumeroAleatorio(5, 15);
         this.poderAtaque += incrementoDoTreino + this.poderAtaque * 1.1;
     }
+
+    subirNivel(): void {
+        this.nivel += 1;
+        this.vidaMaxima += 10;
+        this.manaMaxima += 10;
+        this.vidaAtual = this.vidaMaxima;
+        this.manaAtual = this.manaMaxima;
+    }
+
+    regenerarMana(): void {
+        this.manaAtual += 20;
+        if (this.manaAtual > this.manaMaxima) {
+            this.manaAtual = this.manaMaxima;
+        console.log(`${this.nome} regenerou mana! Mana atual: ${this.manaAtual}`);
+        }
+    }
+
 
     estaVivo(){
         return (this.vidaAtual > 0)
